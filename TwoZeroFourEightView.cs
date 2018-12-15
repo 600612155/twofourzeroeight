@@ -28,6 +28,8 @@ namespace twozerofoureight
         public void Notify(Model m)
         {
             UpdateBoard(((TwoZeroFourEightModel)m).GetBoard());
+            score.Text = ((TwoZeroFourEightModel)m).GetScore().ToString();
+            gameover.Visible = ((TwoZeroFourEightModel)m).Fullboard();
         }
 
         private void UpdateTile(Label l, int i)
@@ -99,5 +101,41 @@ namespace twozerofoureight
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch (keyData)
+            {
+                case Keys.Up:
+                    controller.ActionPerformed(TwoZeroFourEightController.UP);
+                    return true;
+
+                case Keys.Down:
+                    controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+                    return true;
+
+                case Keys.Left:
+                    controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+                    return true;
+
+                case Keys.Right:
+                    controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+                    return true;
+            }
+
+            return false;
+
+        }
+
+
+
+        private void lbl23_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gameover_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
